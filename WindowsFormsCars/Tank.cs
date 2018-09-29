@@ -7,14 +7,6 @@ namespace WindowsFormsCars
     /// </summary>
     class Tank
     {
-        public enum Direction
-        {
-            Up,
-            Down,
-            Left,
-            Right
-        }
-
         /// <summary>
         /// Левая координата отрисовки танка
         /// </summary>
