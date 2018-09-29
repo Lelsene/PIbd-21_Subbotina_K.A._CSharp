@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsCars
+namespace Lab_02
 {
     public enum Direction
     {
