@@ -32,10 +32,12 @@
             this.buttonCreateHeavyTank = new System.Windows.Forms.Button();
             this.buttonCreateLightTank = new System.Windows.Forms.Button();
             this.groupBoxParking = new System.Windows.Forms.GroupBox();
-            this.labelPlace = new System.Windows.Forms.Label();
-            this.maskedTextBoxPlace = new System.Windows.Forms.MaskedTextBox();
-            this.buttonPlace = new System.Windows.Forms.Button();
             this.pictureBoxPlace = new System.Windows.Forms.PictureBox();
+            this.buttonPlace = new System.Windows.Forms.Button();
+            this.maskedTextBoxPlace = new System.Windows.Forms.MaskedTextBox();
+            this.labelPlace = new System.Windows.Forms.Label();
+            this.labelLevel = new System.Windows.Forms.Label();
+            this.listBoxLevels = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.groupBoxParking.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlace)).BeginInit();
@@ -53,7 +55,7 @@
             // buttonCreateHeavyTank
             // 
             this.buttonCreateHeavyTank.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonCreateHeavyTank.Location = new System.Drawing.Point(855, 77);
+            this.buttonCreateHeavyTank.Location = new System.Drawing.Point(855, 189);
             this.buttonCreateHeavyTank.Name = "buttonCreateHeavyTank";
             this.buttonCreateHeavyTank.Size = new System.Drawing.Size(127, 49);
             this.buttonCreateHeavyTank.TabIndex = 4;
@@ -64,7 +66,7 @@
             // buttonCreateLightTank
             // 
             this.buttonCreateLightTank.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonCreateLightTank.Location = new System.Drawing.Point(855, 22);
+            this.buttonCreateLightTank.Location = new System.Drawing.Point(855, 134);
             this.buttonCreateLightTank.Name = "buttonCreateLightTank";
             this.buttonCreateLightTank.Size = new System.Drawing.Size(127, 49);
             this.buttonCreateLightTank.TabIndex = 3;
@@ -86,21 +88,14 @@
             this.groupBoxParking.TabStop = false;
             this.groupBoxParking.Text = "Забрать танк";
             // 
-            // labelPlace
+            // pictureBoxPlace
             // 
-            this.labelPlace.AutoSize = true;
-            this.labelPlace.Location = new System.Drawing.Point(31, 29);
-            this.labelPlace.Name = "labelPlace";
-            this.labelPlace.Size = new System.Drawing.Size(42, 13);
-            this.labelPlace.TabIndex = 0;
-            this.labelPlace.Text = "Место:";
-            // 
-            // maskedTextBoxPlace
-            // 
-            this.maskedTextBoxPlace.Location = new System.Drawing.Point(79, 26);
-            this.maskedTextBoxPlace.Name = "maskedTextBoxPlace";
-            this.maskedTextBoxPlace.Size = new System.Drawing.Size(39, 20);
-            this.maskedTextBoxPlace.TabIndex = 1;
+            this.pictureBoxPlace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxPlace.Location = new System.Drawing.Point(8, 81);
+            this.pictureBoxPlace.Name = "pictureBoxPlace";
+            this.pictureBoxPlace.Size = new System.Drawing.Size(124, 104);
+            this.pictureBoxPlace.TabIndex = 3;
+            this.pictureBoxPlace.TabStop = false;
             // 
             // buttonPlace
             // 
@@ -112,20 +107,49 @@
             this.buttonPlace.UseVisualStyleBackColor = true;
             this.buttonPlace.Click += new System.EventHandler(this.buttonPlace_Click);
             // 
-            // pictureBoxPlace
+            // maskedTextBoxPlace
             // 
-            this.pictureBoxPlace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxPlace.Location = new System.Drawing.Point(8, 81);
-            this.pictureBoxPlace.Name = "pictureBoxPlace";
-            this.pictureBoxPlace.Size = new System.Drawing.Size(124, 104);
-            this.pictureBoxPlace.TabIndex = 3;
-            this.pictureBoxPlace.TabStop = false;
+            this.maskedTextBoxPlace.Location = new System.Drawing.Point(79, 26);
+            this.maskedTextBoxPlace.Name = "maskedTextBoxPlace";
+            this.maskedTextBoxPlace.Size = new System.Drawing.Size(39, 20);
+            this.maskedTextBoxPlace.TabIndex = 1;
+            // 
+            // labelPlace
+            // 
+            this.labelPlace.AutoSize = true;
+            this.labelPlace.Location = new System.Drawing.Point(31, 29);
+            this.labelPlace.Name = "labelPlace";
+            this.labelPlace.Size = new System.Drawing.Size(42, 13);
+            this.labelPlace.TabIndex = 0;
+            this.labelPlace.Text = "Место:";
+            // 
+            // labelLevel
+            // 
+            this.labelLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelLevel.AutoSize = true;
+            this.labelLevel.Location = new System.Drawing.Point(900, 0);
+            this.labelLevel.Name = "labelLevel";
+            this.labelLevel.Size = new System.Drawing.Size(45, 13);
+            this.labelLevel.TabIndex = 6;
+            this.labelLevel.Text = "Уровни";
+            // 
+            // listBoxLevels
+            // 
+            this.listBoxLevels.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxLevels.FormattingEnabled = true;
+            this.listBoxLevels.Location = new System.Drawing.Point(857, 19);
+            this.listBoxLevels.Name = "listBoxLevels";
+            this.listBoxLevels.Size = new System.Drawing.Size(125, 108);
+            this.listBoxLevels.TabIndex = 7;
+            this.listBoxLevels.Click += new System.EventHandler(this.listBoxLevels_SelectedIndexChanged);
             // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(994, 481);
+            this.Controls.Add(this.listBoxLevels);
+            this.Controls.Add(this.labelLevel);
             this.Controls.Add(this.groupBoxParking);
             this.Controls.Add(this.buttonCreateHeavyTank);
             this.Controls.Add(this.buttonCreateLightTank);
@@ -137,6 +161,7 @@
             this.groupBoxParking.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlace)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -150,5 +175,7 @@
         private System.Windows.Forms.Button buttonPlace;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxPlace;
         private System.Windows.Forms.Label labelPlace;
+        private System.Windows.Forms.Label labelLevel;
+        private System.Windows.Forms.ListBox listBoxLevels;
     }
 }
