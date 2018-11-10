@@ -51,6 +51,10 @@ namespace Lab_02
             _pictureWidth = width;
             _pictureHeight = height;
         }
+        public void SetMainColor(Color color)
+        {
+            MainColor = color;
+        }
         public abstract void DrawTank(Graphics g);
         public abstract void MoveTank(Direction direction);
     }

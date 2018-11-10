@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.pictureBoxParking = new System.Windows.Forms.PictureBox();
-            this.buttonCreateHeavyTank = new System.Windows.Forms.Button();
-            this.buttonCreateLightTank = new System.Windows.Forms.Button();
             this.groupBoxParking = new System.Windows.Forms.GroupBox();
             this.pictureBoxPlace = new System.Windows.Forms.PictureBox();
             this.buttonPlace = new System.Windows.Forms.Button();
@@ -38,6 +36,7 @@
             this.labelPlace = new System.Windows.Forms.Label();
             this.labelLevel = new System.Windows.Forms.Label();
             this.listBoxLevels = new System.Windows.Forms.ListBox();
+            this.buttonSetTank = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.groupBoxParking.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlace)).BeginInit();
@@ -51,28 +50,6 @@
             this.pictureBoxParking.Size = new System.Drawing.Size(849, 482);
             this.pictureBoxParking.TabIndex = 0;
             this.pictureBoxParking.TabStop = false;
-            // 
-            // buttonCreateHeavyTank
-            // 
-            this.buttonCreateHeavyTank.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonCreateHeavyTank.Location = new System.Drawing.Point(855, 189);
-            this.buttonCreateHeavyTank.Name = "buttonCreateHeavyTank";
-            this.buttonCreateHeavyTank.Size = new System.Drawing.Size(127, 49);
-            this.buttonCreateHeavyTank.TabIndex = 4;
-            this.buttonCreateHeavyTank.Text = "Припарковать танк";
-            this.buttonCreateHeavyTank.UseVisualStyleBackColor = true;
-            this.buttonCreateHeavyTank.Click += new System.EventHandler(this.buttonCreateHeavyTank_Click);
-            // 
-            // buttonCreateLightTank
-            // 
-            this.buttonCreateLightTank.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonCreateLightTank.Location = new System.Drawing.Point(855, 134);
-            this.buttonCreateLightTank.Name = "buttonCreateLightTank";
-            this.buttonCreateLightTank.Size = new System.Drawing.Size(127, 49);
-            this.buttonCreateLightTank.TabIndex = 3;
-            this.buttonCreateLightTank.Text = "Припарковать бронированную машину";
-            this.buttonCreateLightTank.UseVisualStyleBackColor = true;
-            this.buttonCreateLightTank.Click += new System.EventHandler(this.buttonCreateLightTank_Click);
             // 
             // groupBoxParking
             // 
@@ -143,16 +120,25 @@
             this.listBoxLevels.TabIndex = 7;
             this.listBoxLevels.Click += new System.EventHandler(this.listBoxLevels_SelectedIndexChanged);
             // 
+            // buttonSetTank
+            // 
+            this.buttonSetTank.Location = new System.Drawing.Point(857, 184);
+            this.buttonSetTank.Name = "buttonSetTank";
+            this.buttonSetTank.Size = new System.Drawing.Size(125, 29);
+            this.buttonSetTank.TabIndex = 8;
+            this.buttonSetTank.Text = "Заказать танк";
+            this.buttonSetTank.UseVisualStyleBackColor = true;
+            this.buttonSetTank.Click += new System.EventHandler(this.buttonSetTank_Click);
+            // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(994, 481);
+            this.Controls.Add(this.buttonSetTank);
             this.Controls.Add(this.listBoxLevels);
             this.Controls.Add(this.labelLevel);
             this.Controls.Add(this.groupBoxParking);
-            this.Controls.Add(this.buttonCreateHeavyTank);
-            this.Controls.Add(this.buttonCreateLightTank);
             this.Controls.Add(this.pictureBoxParking);
             this.Name = "FormParking";
             this.Text = "Garage";
@@ -168,8 +154,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxParking;
-        private System.Windows.Forms.Button buttonCreateHeavyTank;
-        private System.Windows.Forms.Button buttonCreateLightTank;
         private System.Windows.Forms.GroupBox groupBoxParking;
         private System.Windows.Forms.PictureBox pictureBoxPlace;
         private System.Windows.Forms.Button buttonPlace;
@@ -177,5 +161,6 @@
         private System.Windows.Forms.Label labelPlace;
         private System.Windows.Forms.Label labelLevel;
         private System.Windows.Forms.ListBox listBoxLevels;
+        private System.Windows.Forms.Button buttonSetTank;
     }
 }

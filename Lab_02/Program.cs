@@ -6,6 +6,8 @@ using System.Windows.Forms;
 
 namespace Lab_02
 {
+    public delegate void tankDelegate(ITransport tank);
+
     static class Program
     {
         /// <summary>

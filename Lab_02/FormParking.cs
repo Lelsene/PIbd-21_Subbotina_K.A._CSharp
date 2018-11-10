@@ -18,6 +18,11 @@ namespace Lab_02
         MultiLevelParking parking;
 
         /// <summary>
+        /// Форма для добавления
+        /// </summary>
+        FormTankConfig form;
+
+        /// <summary>
         /// Количество уровней-парковок
         /// </summary>
         private const int countLevel = 5;
@@ -49,57 +54,7 @@ namespace Lab_02
                 pictureBoxParking.Image = bmp;
             }
         }
-        /// <summary>
-        /// Обработка нажатия кнопки "Припарковать бронированную машину"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonCreateLightTank_Click(object sender, EventArgs e)
-        {
-            if (listBoxLevels.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    var tank = new LightTank(100, 1000, dialog.Color);
-                    int place = parking[listBoxLevels.SelectedIndex] + tank;
-                    if (place == -1)
-                    {
-                        MessageBox.Show("Нет свободных мест", "Ошибка",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    Draw();
-                }
-            }
-        }
-        /// <summary>
-        /// Обработка нажатия кнопки "Припарковать танк"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonCreateHeavyTank_Click(object sender, EventArgs e)
-        {
-            if (listBoxLevels.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    ColorDialog dialogDop = new ColorDialog();
-                    if (dialogDop.ShowDialog() == DialogResult.OK)
-                    {
-                        var tank = new HeavyTank(100, 1000, dialog.Color, dialogDop.Color,
-                        true, true);
-                        int place = parking[listBoxLevels.SelectedIndex] + tank;
-                        if (place == -1)
-                        {
-                            MessageBox.Show("Нет свободных мест", "Ошибка",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        Draw();
-                    }
-                }
-            }
-        }
+
         /// <summary>
         /// Обработка нажатия кнопки "Забрать"
         /// </summary>
@@ -111,16 +66,16 @@ namespace Lab_02
             {
                 if (maskedTextBoxPlace.Text != "")
                 {
-                    var car = parking[listBoxLevels.SelectedIndex] -
+                    var tank = parking[listBoxLevels.SelectedIndex] -
                     Convert.ToInt32(maskedTextBoxPlace.Text);
-                    if (car != null)
+                    if (tank != null)
                     {
                         Bitmap bmp = new Bitmap(pictureBoxPlace.Width,
                         pictureBoxPlace.Height);
                         Graphics gr = Graphics.FromImage(bmp);
-                        car.SetPosition(5, 5, pictureBoxPlace.Width,
+                        tank.SetPosition(5, 5, pictureBoxPlace.Width,
                         pictureBoxPlace.Height);
-                        car.DrawTank(gr);
+                        tank.DrawTank(gr);
                         pictureBoxPlace.Image = bmp;
                     }
                     else
@@ -143,5 +98,39 @@ namespace Lab_02
         {
             Draw();
         }
+
+        /// <summary>
+        /// Обработка нажатия кнопки "Припарковать бронированную машину"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSetTank_Click(object sender, EventArgs e)
+        {
+            form = new FormTankConfig();
+            form.AddEvent(AddTank);
+            form.Show();
+        }
+
+
+        /// <summary>
+        /// Метод добавления танка
+        /// </summary>
+        /// <param name="tank"></param>
+        private void AddTank(ITransport tank)
+        {
+            if (tank != null && listBoxLevels.SelectedIndex > -1)
+            {
+                int place = parking[listBoxLevels.SelectedIndex] + tank;
+                if (place > -1)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Танк не удалось поставить");
+                }
+            }
+        }
+
     }
 }
