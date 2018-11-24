@@ -197,7 +197,7 @@
             // 
             // panelBlue
             // 
-            this.panelBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.panelBlue.BackColor = System.Drawing.Color.Purple;
             this.panelBlue.Location = new System.Drawing.Point(62, 62);
             this.panelBlue.Name = "panelBlue";
             this.panelBlue.Size = new System.Drawing.Size(37, 36);

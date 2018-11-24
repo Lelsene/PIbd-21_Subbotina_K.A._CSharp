@@ -17,13 +17,13 @@ namespace Lab_02
         /// <param name="width">Ширина картинки</param>
         /// <param name="height">Высота картинки</param>
         void SetPosition(int x, int y, int width, int height);
-        
+
         /// <summary>
         /// Изменение направления пермещения
         /// </summary>
         /// <param name="direction">Направление</param>
         void MoveTank(Direction direction);
-        
+
         /// <summary>
         /// Отрисовка автомобиля
         /// </summary>
