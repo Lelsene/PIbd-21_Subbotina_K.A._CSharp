@@ -91,11 +91,10 @@ pictureHeight));
                         WriteToFile("Level" + Environment.NewLine, fs);
                         for (int i = 0; i < countPlaces; i++)
                         {
-                            var tank = level[i];
-                            if (tank != null)
+                            try
                             {
-                                //если место не пустое
-                                //Записываем тип танка
+                                var tank = level[i];
+                                //Записываем тип мшаины
                                 if (tank.GetType().Name == "LightTank")
                                 {
                                     WriteToFile(i + ":LightTank:", fs);
@@ -107,6 +106,8 @@ pictureHeight));
                                 //Записываемые параметры
                                 WriteToFile(tank + Environment.NewLine, fs);
                             }
+                            catch (Exception ex) { }
+                            finally { }
                         }
                     }
                 }
@@ -132,7 +133,7 @@ pictureHeight));
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
             string bufferTextFromFile = "";
             using (FileStream fs = new FileStream(filename, FileMode.Open))
@@ -162,7 +163,7 @@ pictureHeight));
             else
             {
                 //если нет такой записи, то это не те данные
-                return false;
+                throw new Exception("Неверный формат файла");
             }
             int counter = -1;
             ITransport tank = null;
