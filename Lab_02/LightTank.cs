@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab_02
 {
-    public class LightTank : Vehicle
+    public class LightTank : Vehicle, IComparable<LightTank>, IEquatable<LightTank>
     {
         /// <summary>
         /// Ширина отрисовки танка
@@ -107,6 +107,89 @@ namespace Lab_02
         public override string ToString()
         {
             return MaxSpeed + ";" + Weight + ";" + MainColor.Name;
+        }
+
+        /// <summary>
+        /// Метод интерфейса IComparable для класса LightTank
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(LightTank other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return MaxSpeed.CompareTo(other.MaxSpeed);
+            }
+            if (Weight != other.Weight)
+            {
+                return Weight.CompareTo(other.Weight);
+            }
+            if (MainColor != other.MainColor)
+            {
+                MainColor.Name.CompareTo(other.MainColor.Name);
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// Метод интерфейса IEquatable для класса LightTank
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(LightTank other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Перегрузка метода от object
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            LightTank tankObj = obj as LightTank;
+            if (tankObj == null)
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(tankObj);
+            }
+        }
+
+        /// <summary>
+        /// Перегрузка метода от object
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

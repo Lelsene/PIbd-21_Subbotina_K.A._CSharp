@@ -43,6 +43,7 @@
             this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.Sort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.groupBoxParking.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlace)).BeginInit();
@@ -129,11 +130,11 @@
             // 
             // buttonSetTank
             // 
-            this.buttonSetTank.Location = new System.Drawing.Point(857, 184);
+            this.buttonSetTank.Location = new System.Drawing.Point(857, 149);
             this.buttonSetTank.Name = "buttonSetTank";
-            this.buttonSetTank.Size = new System.Drawing.Size(125, 29);
+            this.buttonSetTank.Size = new System.Drawing.Size(125, 47);
             this.buttonSetTank.TabIndex = 8;
-            this.buttonSetTank.Text = "Заказать танк";
+            this.buttonSetTank.Text = "Добавить танк";
             this.buttonSetTank.UseVisualStyleBackColor = true;
             this.buttonSetTank.Click += new System.EventHandler(this.buttonSetTank_Click);
             // 
@@ -180,11 +181,22 @@
             this.saveFileDialog.FileName = "Parking";
             this.saveFileDialog.Filter = "txt file | *.txt";
             // 
+            // Sort
+            // 
+            this.Sort.Location = new System.Drawing.Point(856, 202);
+            this.Sort.Name = "Sort";
+            this.Sort.Size = new System.Drawing.Size(125, 47);
+            this.Sort.TabIndex = 10;
+            this.Sort.Text = "Сортировка";
+            this.Sort.UseVisualStyleBackColor = true;
+            this.Sort.Click += new System.EventHandler(this.buttonSort_Click);
+            // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(994, 568);
+            this.Controls.Add(this.Sort);
             this.Controls.Add(this.buttonSetTank);
             this.Controls.Add(this.listBoxLevels);
             this.Controls.Add(this.labelLevel);
@@ -221,5 +233,6 @@
         private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.Button Sort;
     }
 }

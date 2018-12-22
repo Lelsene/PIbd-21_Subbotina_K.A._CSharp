@@ -72,7 +72,7 @@ pictureHeight));
         /// </summary>
         /// <param name="filename">Путь и имя файла</param>
         /// <returns></returns>
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             if (File.Exists(filename))
             {
@@ -83,37 +83,30 @@ pictureHeight));
                 using (BufferedStream bs = new BufferedStream(fs))
                 {
                     //Записываем количество уровней
-                    WriteToFile("CountLeveles:" + parkingStages.Count +
-                    Environment.NewLine, fs);
+                    WriteToFile("CountLeveles:" + parkingStages.Count + Environment.NewLine, fs);
                     foreach (var level in parkingStages)
                     {
                         //Начинаем уровень
                         WriteToFile("Level" + Environment.NewLine, fs);
-                        for (int i = 0; i < countPlaces; i++)
+                        foreach (var tank in level)
                         {
-                            try
+                            //Записываем тип мшаины
+                            if (tank.GetType().Name == "LightTank")
                             {
-                                var tank = level[i];
-                                //Записываем тип мшаины
-                                if (tank.GetType().Name == "LightTank")
-                                {
-                                    WriteToFile(i + ":LightTank:", fs);
-                                }
-                                if (tank.GetType().Name == "HeavyTank")
-                                {
-                                    WriteToFile(i + ":HeavyTank:", fs);
-                                }
-                                //Записываемые параметры
-                                WriteToFile(tank + Environment.NewLine, fs);
+                                WriteToFile(":LightTank:", fs);
                             }
-                            catch (Exception ex) { }
-                            finally { }
+                            if (tank.GetType().Name == "HeavyTank")
+                            {
+                                WriteToFile(":HeavyTank:", fs);
+                            }
+                            //Записываемые параметры
+                            WriteToFile(tank + Environment.NewLine, fs);
                         }
                     }
                 }
             }
-            return true;
         }
+
         /// <summary>
         /// Метод записи информации в файл
         /// </summary>
@@ -124,12 +117,13 @@ pictureHeight));
             byte[] info = new UTF8Encoding(true).GetBytes(text);
             stream.Write(info, 0, info.Length);
         }
+
         /// <summary>
-        /// Загрузка нформации по автомобилям на парковках из файла
+        /// Загрузка информации по автомобилям на парковках из файла
         /// </summary>
         /// <param name="filename"></param>
         /// <returns></returns>
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
@@ -138,14 +132,11 @@ pictureHeight));
             string bufferTextFromFile = "";
             using (FileStream fs = new FileStream(filename, FileMode.Open))
             {
-                using (BufferedStream bs = new BufferedStream(fs))
+                byte[] b = new byte[fs.Length];
+                UTF8Encoding temp = new UTF8Encoding(true);
+                while (fs.Read(b, 0, b.Length) > 0)
                 {
-                    byte[] b = new byte[fs.Length];
-                    UTF8Encoding temp = new UTF8Encoding(true);
-                    while (bs.Read(b, 0, b.Length) > 0)
-                    {
-                        bufferTextFromFile += temp.GetString(b);
-                    }
+                    bufferTextFromFile += temp.GetString(b);
                 }
             }
             bufferTextFromFile = bufferTextFromFile.Replace("\r", "");
@@ -166,6 +157,7 @@ pictureHeight));
                 throw new Exception("Неверный формат файла");
             }
             int counter = -1;
+            int counterTank = 0;
             ITransport tank = null;
             for (int i = 1; i < strs.Length; ++i)
             {
@@ -174,8 +166,8 @@ pictureHeight));
                 {
                     //начинаем новый уровень
                     counter++;
-                    parkingStages.Add(new Parking<ITransport>(countPlaces, pictureWidth,
-                    pictureHeight));
+                    counterTank = 0;
+                    parkingStages.Add(new Parking<ITransport>(countPlaces, pictureWidth, pictureHeight));
                     continue;
                 }
                 if (string.IsNullOrEmpty(strs[i]))
@@ -190,9 +182,16 @@ pictureHeight));
                 {
                     tank = new HeavyTank(strs[i].Split(':')[2]);
                 }
-                parkingStages[counter][Convert.ToInt32(strs[i].Split(':')[0])] = tank;
+                parkingStages[counter][counterTank++] = tank;
             }
-            return true;
+        }
+
+        /// <summary>
+        /// Сортировка уровней
+        /// </summary>
+        public void Sort()
+        {
+            parkingStages.Sort();
         }
     }
 }

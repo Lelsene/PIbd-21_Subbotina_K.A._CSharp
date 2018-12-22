@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab_02
 {
-    public class HeavyTank : LightTank
+    public class HeavyTank : LightTank, IComparable<HeavyTank>, IEquatable<HeavyTank>
     {
         /// <summary>
         /// Дополнительный цвет
@@ -89,6 +89,91 @@ namespace Lab_02
         {
             return base.ToString() + ";" + DopColor.Name + ";" + FirstMuzzle + ";" +
             SecondMuzzle;
+        }
+
+        /// <summary>
+        /// Метод интерфейса IComparable для класса SportCar
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(HeavyTank other)
+        {
+            var res = (this is LightTank).CompareTo(other is LightTank);
+            if (res != 0)
+            {
+                return res;
+            }
+            if (DopColor != other.DopColor)
+            {
+                DopColor.Name.CompareTo(other.DopColor.Name);
+            }
+            if (FirstMuzzle != other.FirstMuzzle)
+            {
+                return FirstMuzzle.CompareTo(other.FirstMuzzle);
+            }
+            if (SecondMuzzle != other.SecondMuzzle)
+            {
+                return SecondMuzzle.CompareTo(other.SecondMuzzle);
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// Метод интерфейса IEquatable для класса SportCar
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(HeavyTank other)
+        {
+            var res = (this as LightTank).Equals(other as LightTank);
+            if (!res)
+            {
+                return res;
+            }
+            if (DopColor != other.DopColor)
+            {
+                return false;
+            }
+            if (FirstMuzzle != other.FirstMuzzle)
+            {
+                return false;
+            }
+            if (SecondMuzzle != other.SecondMuzzle)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Перегрузка метода от object
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            HeavyTank tankObj = obj as HeavyTank;
+            if (tankObj == null)
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(tankObj);
+            }
+        }
+
+        /// <summary>
+        /// Перегрузка метода от object
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
